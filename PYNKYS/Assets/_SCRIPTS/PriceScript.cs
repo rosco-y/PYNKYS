@@ -10,11 +10,12 @@ public class PriceScript : MonoBehaviour
     // Start is called before the first frame update
     decimal _price;
     cLevel _level;
-
+    static decimal _amount = 0;
 
     private void OnEnable()
     {
-        Price = 21.33m;
+        _amount += 1.11m;
+        Price = _amount;
     }
 
     public decimal Price
