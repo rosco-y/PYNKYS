@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
 
 namespace PYNKYS.SCRIPTS.PRICES
 {
 
   
-    public class cLevel
+    public class cLevel : MonoBehaviour
     {
+
+        public float _startingLevel = 1.0f;
+
         #region PRIVATE MEMBERS
         float _level;
         const float INCREMENT = 0.1f;

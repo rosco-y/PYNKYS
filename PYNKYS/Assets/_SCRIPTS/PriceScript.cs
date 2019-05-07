@@ -11,13 +11,28 @@ public class PriceScript : MonoBehaviour
     decimal _price;
     cLevel _level;
 
-    private void Awake()
-    {
-    }
 
     private void OnEnable()
     {
+        Price = 21.33m;
+    }
 
+    public decimal Price
+    {
+        set
+        {
+            _price = value;
+            _priceTag.text = $"{_price:c}";
+        }
+        get
+        {
+            return _price;
+        }
+    }
+
+    void setPrice()
+    {
+       
     }
 
 
