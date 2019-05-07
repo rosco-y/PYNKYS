@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using PYNKYS.SCRIPTS.PRICES;
 using TMPro;
-using PYNKYS.SCRIPTS.PRICES;
+using UnityEngine;
 
 public class PriceScript : MonoBehaviour
 {
@@ -12,11 +10,17 @@ public class PriceScript : MonoBehaviour
     cLevel _level;
     static decimal _amount = 0;
 
-    private void OnEnable()
+    private void Awake()
     {
         _amount += 1.11m;
         Price = _amount;
     }
+
+    //private void OnEnable()
+    //{
+
+
+    //}
 
     public decimal Price
     {
@@ -31,10 +35,6 @@ public class PriceScript : MonoBehaviour
         }
     }
 
-    void setPrice()
-    {
-       
-    }
 
 
 }
