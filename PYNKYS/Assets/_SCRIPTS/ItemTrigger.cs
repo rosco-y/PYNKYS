@@ -1,16 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ItemTrigger : MonoBehaviour
 {
 
+    public TMP_Text _totalPriceTag;
     public ItemPlacer _itemPlacer;
+    List<decimal> _priceList;
+    decimal _totalPrice;
+
+    private void Start()
+    {
+        _priceList = new List<decimal>();
+        _totalPrice = 0;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        PriceScript ME = other.GetComponent<PriceScript>();
-        _itemPlacer.EnQueueItem(ME);
+
+        PriceScript retireItem = other.GetComponent<PriceScript>();
+        _totalPrice += retireItem.Price;
+        _totalPriceTag.text = $"{_totalPrice}";
+        _priceList.Add(_totalPrice);
+        _itemPlacer.EnQueueItem(retireItem);
         _itemPlacer.PlaceItem();
     }
 
