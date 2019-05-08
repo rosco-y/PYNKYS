@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ItemTrigger : MonoBehaviour
+public class RemoveItemTrigger : MonoBehaviour
 {
 
     
@@ -24,7 +24,7 @@ public class ItemTrigger : MonoBehaviour
         _totalPrice += retireItem.Price;        
         _priceList.Add(_totalPrice);
         _itemPlacer.EnQueueItem(retireItem);
-        _itemPlacer.PlaceItem();
+        //_itemPlacer.PlaceItem();
     }
 
 }

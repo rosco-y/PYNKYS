@@ -12,7 +12,7 @@ public class PriceScript : MonoBehaviour
 
     private void Awake()
     {
-        _amount += 1.11m;
+        _amount += 1m;
         Price = _amount;
     }
 
