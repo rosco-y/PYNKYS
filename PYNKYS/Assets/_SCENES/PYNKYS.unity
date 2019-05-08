@@ -169,7 +169,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 998c20a479b4d4947be45114979df27c, type: 2}
+  - {fileID: 2100000, guid: 5ab9537af18a025478bd34954b7ab04c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -616,7 +616,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 25.636755
+  field of view: 39.544464
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -641,8 +641,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.16721003, y: -0.0014788114, z: 0.00025080948, w: 0.9859202}
-  m_LocalPosition: {x: 0.119462624, y: 4.86397, z: -8.631208}
+  m_LocalRotation: {x: 0.16312928, y: -0.115147404, z: 0.019173624, w: 0.9796746}
+  m_LocalPosition: {x: 0.93709373, y: 2.2400408, z: -3.9019468}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -698,7 +698,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8c8647d2f25e15047b82db870d5f21cd, type: 2}
+  - {fileID: 2100000, guid: 80b2686a1b521a94b99383f4213cfde0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -772,7 +772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261a55513bb7a8e4baacdc82024b1744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalPriceTag: {fileID: 0}
+  _totalPriceTag: {fileID: 355498515}
   _itemPlacer: {fileID: 572767966}
 --- !u!65 &1933807317
 BoxCollider:
