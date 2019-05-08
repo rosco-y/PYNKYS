@@ -445,8 +445,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac733915b89a084483273fd14e00f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _totalPriceTag: {fileID: 355498515}
   _itemPrefab: {fileID: 847449906670388740, guid: 5f3bcd0f1fa848943844a75606186fb6,
     type: 3}
+  _numItemsPerLevel: 10
 --- !u!114 &572767967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,7 +774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261a55513bb7a8e4baacdc82024b1744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalPriceTag: {fileID: 355498515}
   _itemPlacer: {fileID: 572767966}
 --- !u!65 &1933807317
 BoxCollider:

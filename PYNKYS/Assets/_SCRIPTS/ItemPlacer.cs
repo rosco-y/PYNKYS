@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ItemPlacer : MonoBehaviour
 {
+    public TMP_Text _totalPriceTag;
     public PriceScript _itemPrefab;
     Vector3 _itemPosition;
+    public int ItemCount { get; set; }
+    public int _numItemsPerLevel = 10;
 
     Queue<PriceScript> _items;
-
 
     /// <summary>
     /// OnEnable is fired whenever a GameObject is SetActive(true).
@@ -19,6 +22,12 @@ public class ItemPlacer : MonoBehaviour
         _itemPosition = new Vector3(-1.17199f, 1.231899f, 0);
         PlaceItem();
     }
+
+    public void Reset()
+    {                     
+        ItemCount = 0;
+    }
+
 
     /// <summary>
     /// Preload items into the Item Queue, so they can be used
@@ -53,6 +62,10 @@ public class ItemPlacer : MonoBehaviour
     {
         if (_items.Count == 0)
             loadItems(2);  // 1 at  time until there are enough.
+
+        _totalPriceTag.text = $"{++ItemCount}";
+
+
         PriceScript queItem = _items.Dequeue();
         setPosition(queItem);
         queItem.gameObject.SetActive(true);
