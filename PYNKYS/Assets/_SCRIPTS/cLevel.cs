@@ -23,8 +23,8 @@ namespace PYNKYS.SCRIPTS.PRICES
         {
             if (_level < 10)
             {
-                _level += INCREMENT;
-                _settings.SetLevel(_level);
+                _level = trucateLevel(_level + INCREMENT);
+                _settings.SetLevel(_level); // truncated and agreed upon
             }
         }
 
@@ -32,8 +32,8 @@ namespace PYNKYS.SCRIPTS.PRICES
         {
             if (_level > 1)
             {
-                _level -= INCREMENT;
-                _settings.SetLevel(_level);
+                _level = trucateLevel(_level - INCREMENT);
+                _settings.SetLevel(_level); // truncated and agreed upon
             }
         }
 
@@ -42,6 +42,33 @@ namespace PYNKYS.SCRIPTS.PRICES
             get { return _settings; }
         }
 
+        public static float Level
+        {
+            get
+            {
+                return _level;
+            }
+        }
+        /// <summary>
+        /// Truncate the float representation of the level to 
+        /// 1 digit precision without rounding.
+        /// </summary>
+        /// <param name="level">the level that needs to be guaranteed no more than
+        /// n digits of precision.</param>
+        /// <param name="precision">
+        /// How many trailing digits of precion are desired.
+        /// for cLevel, the precision is always 1, but it's just as easy to 
+        /// copy it generically, as I got this from:
+        /// https://stackoverflow.com/questions/3143657/truncate-two-decimal-places-without-rounding
+        /// </param>
+        /// <returns></returns>
+        static float trucateLevel(float level, int precision = 1)
+        {
+            float step = (float)Math.Pow(10, precision);
+            float tens = step * level;
+            float retFloat = (float)Math.Truncate(tens / step);
+            return retFloat;
+        }
     }
 
 

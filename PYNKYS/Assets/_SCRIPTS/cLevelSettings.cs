@@ -92,10 +92,6 @@ namespace PYNKYS.SCRIPTS.PRICES
         public void SetLevel(float level)
         {
 
-            /// level = trucateLevel(level); trucate float to
-            /// 1 digit precision.
-            level = trucateLevel(level);
-
             string sLevel = level.ToString();
             int iLevel = int.Parse(sLevel.Substring(0, 1));
             int iDollars = 0;
@@ -161,20 +157,7 @@ namespace PYNKYS.SCRIPTS.PRICES
             }
 
         }
-
-        /// <summary>
-        /// Truncate trailing precision on a float
-        /// down to 1 digit of precision.
-        /// (9.93030400 becomes 9.9) (No rounding.)
-        /// </summary>
-        /// <param name="level"></param>
-        /// <returns></returns>
-        public float trucateLevel(float level)
-        {
-            // truncate trailing precision.
-            level = float.Parse(level.ToString("0.#"));
-            return level;
-        }
+        
     }
 
 }

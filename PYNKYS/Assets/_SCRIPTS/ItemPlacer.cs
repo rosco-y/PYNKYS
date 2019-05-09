@@ -65,7 +65,7 @@ public class ItemPlacer : MonoBehaviour
         if (_items.Count == 0)
             loadItems(1);  // 1 at  time until there are enough.
 
-        _totalPriceTag.text = $"{++ItemCount}";
+        _totalPriceTag.text = $"Level {cLevel.Level}-Item {++ItemCount}";
         if (ItemCount == ITEMSPERLEVEL)
         {
             cLevel.LevelUp();

@@ -279,11 +279,11 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 2
+  m_fontSize: 1.9
   m_fontSizeBase: 2
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 2
+  m_fontSizeMin: 1
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 10.02843, y: 2.2654872, z: 8.693635, w: 2.5219684}
+  m_margin: {x: 10.02843, y: 2.2654872, z: 7.73151, w: 2.5219684}
   m_textInfo:
     textComponent: {fileID: 355498515}
     characterCount: 5
@@ -404,7 +404,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355498514}
   m_LocalRotation: {x: -0, y: -0, z: 2.7966518e-13, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.59}
+  m_LocalPosition: {x: 0, y: 0, z: -0.871}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -412,7 +412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.79, y: 0.461}
+  m_AnchoredPosition: {x: -1.111, y: 0.699}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &407075316
@@ -553,7 +553,6 @@ MonoBehaviour:
   _totalPriceTag: {fileID: 355498515}
   _itemPrefab: {fileID: 847449906670388740, guid: 5f3bcd0f1fa848943844a75606186fb6,
     type: 3}
-  _numItemsPerLevel: 10
 --- !u!114 &572767967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,6 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingLevel: 1
+  _level: 1
 --- !u!4 &572767968
 Transform:
   m_ObjectHideFlags: 0
