@@ -12,15 +12,14 @@ public class PriceScript : MonoBehaviour
 
     private void Awake()
     {
-        _amount += 1m;
-        Price = _amount;
     }
 
-    //private void OnEnable()
-    //{
-
-
-    //}
+    private void OnEnable()
+    {
+        _amount += 1m;
+        Price = _amount;
+        tag = _amount.ToString();
+    }
 
     public decimal Price
     {
@@ -34,6 +33,8 @@ public class PriceScript : MonoBehaviour
             return _price;
         }
     }
+
+    
 
 
 

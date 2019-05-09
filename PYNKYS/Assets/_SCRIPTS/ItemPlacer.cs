@@ -61,7 +61,7 @@ public class ItemPlacer : MonoBehaviour
     public void PlaceItem()
     {
         if (_items.Count == 0)
-            loadItems(2);  // 1 at  time until there are enough.
+            loadItems(1);  // 1 at  time until there are enough.
 
         _totalPriceTag.text = $"{++ItemCount}";
 
