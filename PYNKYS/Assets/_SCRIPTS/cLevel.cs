@@ -64,10 +64,21 @@ namespace PYNKYS.SCRIPTS.PRICES
         /// <returns></returns>
         static float trucateLevel(float level, int precision = 1)
         {
-            float step = (float)Math.Pow(10, precision);
-            float tens = step * level;
-            float retFloat = (float)Math.Truncate(tens / step);
-            return retFloat;
+            string sNum = level.ToString();
+            string sLevel = sNum.Substring(0, 1);
+            string fullNum = string.Empty;
+            if (sNum.Contains("."))
+            {
+                string sDecimal = sNum.Substring(sNum.IndexOf("."));
+                if (sDecimal.Length >= 2)
+                    sDecimal = sDecimal.Substring(1, 1); // 1 digit following the decimal
+
+                fullNum = sLevel + "." + sDecimal;
+            }
+            else // is a level with no precision
+                fullNum = sNum;
+            float newLevel = float.Parse(fullNum);
+            return newLevel;
         }
     }
 
