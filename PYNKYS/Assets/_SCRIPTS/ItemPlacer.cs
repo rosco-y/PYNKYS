@@ -11,6 +11,7 @@ public class ItemPlacer : MonoBehaviour
     public PriceScript _itemPrefab;
     Vector3 _itemPosition;
     public int ItemCount { get; set; }
+    cCurrencyValue _randomCurrencyValueGenerator;
     Queue<PriceScript> _items;
 
 
@@ -20,6 +21,7 @@ public class ItemPlacer : MonoBehaviour
     private void OnEnable()
     {
 
+        _randomCurrencyValueGenerator = new cCurrencyValue();
         _items = new Queue<PriceScript>();
         _itemPosition = new Vector3(-1.17199f, 1.231899f, 0);
         PlaceItem();
@@ -69,14 +71,28 @@ public class ItemPlacer : MonoBehaviour
         if (ItemCount == ITEMSPERLEVEL)
         {
             cLevel.LevelUp();
+            adjustCurrencyGenerator();
             ItemCount = 0;
         }
-
         PriceScript queItem = _items.Dequeue();
+        queItem.Price = _randomCurrencyValueGenerator.Next();
         setPosition(queItem);
+        
         queItem.gameObject.SetActive(true);
        
     }
+
+    void adjustCurrencyGenerator()
+    {
+        cLevelSettings level = cLevel.Settings;
+        _randomCurrencyValueGenerator.Dollars.Max = level.Dollars;
+        _randomCurrencyValueGenerator.HalfDollars.Max = level.HalfDollars;
+        _randomCurrencyValueGenerator.Quarters.Max = level.Quarters;
+        _randomCurrencyValueGenerator.Dimes.Max = level.Dimes;
+        _randomCurrencyValueGenerator.Nickels.Max = level.Nickels;
+        _randomCurrencyValueGenerator.Pennies.Max = level.Pennies;
+    }
+        
 
     public void EnQueueItem(PriceScript enQueueThisItem)
     {

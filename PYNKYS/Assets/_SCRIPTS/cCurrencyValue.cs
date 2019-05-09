@@ -33,7 +33,7 @@ namespace PYNKYS.SCRIPTS.PRICES
         {
             // start at an elementary level
             _amount = 0;
-            _dollars = new cRange(0, 5);
+            _dollars = new cRange(0, 1);
             _halfDollars = new cRange(0, 0);
             _quarters = new cRange(0, 0);
             _dimes = new cRange(0, 0);
