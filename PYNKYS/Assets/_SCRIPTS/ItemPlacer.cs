@@ -2,22 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using PYNKYS.SCRIPTS.PRICES;
 
 public class ItemPlacer : MonoBehaviour
 {
+    const int ITEMSPERLEVEL = 10;
     public TMP_Text _totalPriceTag;
     public PriceScript _itemPrefab;
     Vector3 _itemPosition;
     public int ItemCount { get; set; }
-    public int _numItemsPerLevel = 10;
-
     Queue<PriceScript> _items;
+
 
     /// <summary>
     /// OnEnable is fired whenever a GameObject is SetActive(true).
     /// </summary>
     private void OnEnable()
     {
+
         _items = new Queue<PriceScript>();
         _itemPosition = new Vector3(-1.17199f, 1.231899f, 0);
         PlaceItem();
@@ -64,7 +66,11 @@ public class ItemPlacer : MonoBehaviour
             loadItems(1);  // 1 at  time until there are enough.
 
         _totalPriceTag.text = $"{++ItemCount}";
-
+        if (ItemCount == ITEMSPERLEVEL)
+        {
+            cLevel.LevelUp();
+            ItemCount = 0;
+        }
 
         PriceScript queItem = _items.Dequeue();
         setPosition(queItem);

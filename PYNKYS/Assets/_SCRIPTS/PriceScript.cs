@@ -7,7 +7,6 @@ public class PriceScript : MonoBehaviour
     public TMP_Text _priceTag;
     // Start is called before the first frame update
     decimal _price;
-    cLevel _level;
     static decimal _amount = 0;
 
     private void Awake()

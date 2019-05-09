@@ -7,56 +7,37 @@ namespace PYNKYS.SCRIPTS.PRICES
 {
 
   
-    public class cLevel : MonoBehaviour
+    public static class cLevel 
     {
 
-        public float _startingLevel = 1.0f;
+        public static float _startingLevel = 1.0f;
 
         #region PRIVATE MEMBERS
-        float _level;
+        static float _level = 1f;
         const float INCREMENT = 0.1f;
-        cLevelSettings _settings;
+        static cLevelSettings _settings = new cLevelSettings();
         #endregion
 
 
-        #region CONSTRUCTION
-        public cLevel()
-        {
-            _level = 1f;
-            _settings = new cLevelSettings();
-        }
-        ~cLevel()
-        {
-            _settings = null;
-        }
-        #endregion
-
-        public float Level
-        {
-            get { return _level; }
-        }
-
-        public void LevelUp()
+        public static void LevelUp()
         {
             if (_level < 10)
             {
                 _level += INCREMENT;
-                _level = _settings.trucateLevel(_level);
                 _settings.SetLevel(_level);
             }
         }
 
-        public void LevelDown()
+        public static void LevelDown()
         {
             if (_level > 1)
             {
                 _level -= INCREMENT;
-                _level = _settings.trucateLevel(_level);
                 _settings.SetLevel(_level);
             }
         }
 
-        public cLevelSettings Settings
+        static public cLevelSettings Settings
         {
             get { return _settings; }
         }
