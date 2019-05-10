@@ -18,3 +18,5 @@ I'm new to game development, and just learning how to build games with Unity, an
 
 Rosco-y 
 Copywrite 2019 Ross Ylitalo Software 
+please send inquiries to ross.ylitalo@gmail.com
+use the subject-line "PYNKYS"
