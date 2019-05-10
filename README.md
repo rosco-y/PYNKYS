@@ -1,7 +1,7 @@
 # PYNKYS
 Adding Game For Everyone
 ---
-When I was a kid, we had a corner store up the street called "Pinkies".  I remember Pinkies when I think of a Mom & Pop corner store.
+When I was a kid, we had a corner store up the street called "Pinkies".  I remember Pinkies when someone mentions a "Mom & Pop" corner store.
 
 Mrs. Pinkie was pretty in her too-much-makeup way, and Mr. Pinkie was a little round and going Bald.  Mr. and Mrs. Pinkie had a lot of patience for us kids, who rarely spent more that a nickel at a time.  If not for living in Rural Minnesota in my later youth, Pinkies would certainly be the last place where us kids could go to the store and pick out the Groceries that Mom wanted, and tell them to "put it on the tab."  Dad stopped in on paydays and paid the tabs.
 
