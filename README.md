@@ -15,5 +15,5 @@ I guarantee that you'll have more fun doing simple arithmatic than you have with
 
 I'm new to game development, and just learning how to build games with Unity, and I'm making very slow progess in finishing this, but I'm truly excited by the prospect of finishing PYNKYS, and I will certainly be crowing on the day I can publish it anywhere.
 ---
-Rosco-y
-##Ross Ylitalo Software.
+Rosco-y 
+&copy Ross Ylitalo Software 5/10/2019
