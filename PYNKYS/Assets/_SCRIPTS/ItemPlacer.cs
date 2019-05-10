@@ -58,6 +58,7 @@ public class ItemPlacer : MonoBehaviour
         item.transform.rotation = Quaternion.identity;
     }
 
+    bool _priceWasZeroLastTime = false;
     /// <summary>
     /// Place an Item it's desired location and roation, and then
     /// set it Active, so it can be priced and begin moving.
@@ -75,7 +76,23 @@ public class ItemPlacer : MonoBehaviour
             ItemCount = 0;
         }
         PriceScript queItem = _items.Dequeue();
-        queItem.Price = _randomCurrencyValueGenerator.Next();
+
+       
+        decimal price = 0;
+        // ensure that zero amounts aren't too common.
+        // dont' even allow two of them in a row.
+        if (_priceWasZeroLastTime)
+        {
+            while (price == 0)
+            {
+                price = _randomCurrencyValueGenerator.Next();
+            }
+        }
+        else
+            price = _randomCurrencyValueGenerator.Next();
+        queItem.Price = price;
+        _priceWasZeroLastTime = price == 0;
+
         setPosition(queItem);
         
         queItem.gameObject.SetActive(true);
