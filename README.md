@@ -3,7 +3,7 @@ Adding Game For Everyone
 ---
 When I was a kid, we had a corner store up the street called "Pinkies".  I remember Pinkies when someone mentions a "Mom & Pop" corner store.
 
-Mrs. Pinkie was a big woman with fair skin and was pretty in her too-much-makeup way, and Mr. Pinkie was a little round and going Bald.  Mr. and Mrs. Pinkie had a lot of patience for us kids; they knew our names and always had smiles although we rarely spent more that a nickel at a time.  If not for living in Rural Minnesota in my later youth, Pinkies Corner Store would certainly be the last place where us kids could go to the store and pick out the Groceries that Mom wanted, and tell them to "put it on the tab."  Dad stopped in on paydays and paid the tab.
+Mrs. Pinkie was a big woman with fair skin and was pretty in her too-much-makeup way, and Mr. Pinkie was a little round and going Bald.  Mr. and Mrs. Pinkie had a lot of patience for us kids; they knew our names even though this was in urban Minneapolis (there were a lot of us kids). They always had smiles for us, although we rarely spent more that a nickel at a time.  Pinkies Corner Store was one of the last places where us kids could go to the store and pick out the Groceries that Mom wanted, and tell them to "put it on the tab."  Dad stopped in on paydays and paid the tab.
 
 There are lots of new software programs that come out these days, promising to strengthen our minds with daily use.  I believe they do, it makes sense to me.  I also believe that you don't need to be tricky exercise our minds.  A simple addition game is all it takes, and you can see big improvements in your adding abilities almost on a daily basis if you stick with it.
 
