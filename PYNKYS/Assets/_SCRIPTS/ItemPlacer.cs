@@ -13,6 +13,9 @@ public class ItemPlacer : MonoBehaviour
     public int ItemCount { get; set; }
     cCurrencyValue _randomCurrencyValueGenerator;
     Queue<PriceScript> _items;
+    decimal _totalPrice = 0m;
+
+    public TMP_InputField _userInputField;
 
 
     /// <summary>
@@ -71,6 +74,8 @@ public class ItemPlacer : MonoBehaviour
         _totalPriceTag.text = $"Level {cLevel.Level}-Item {++ItemCount}";
         if (ItemCount == ITEMSPERLEVEL)
         {
+            _userInputField.gameObject.SetActive(true);
+
             cLevel.LevelUp();
             adjustCurrencyGenerator();
             ItemCount = 0;
@@ -93,10 +98,28 @@ public class ItemPlacer : MonoBehaviour
         queItem.Price = price;
         _priceWasZeroLastTime = price == 0;
 
+        _totalPrice += price;
+
         setPosition(queItem);
         
         queItem.gameObject.SetActive(true);
        
+    }
+
+    public void GetUserInput()
+    {
+        decimal userInput;
+
+        if (decimal.TryParse(_userInputField.text, out userInput))
+        {
+            if (userInput == _totalPrice)
+                cLevel.LevelUp();
+            else
+                cLevel.LevelDown();
+
+
+        }
+
     }
 
     void adjustCurrencyGenerator()
