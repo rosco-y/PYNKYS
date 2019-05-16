@@ -26,7 +26,7 @@ public class ItemPlacer : MonoBehaviour
 
         _randomCurrencyValueGenerator = new cCurrencyValue();
         _items = new Queue<PriceScript>();
-        _itemPosition = new Vector3(-1.17199f, 1.231899f, 0);
+        _itemPosition = new Vector3(-2.482f, 1.2319f, 0);
         PlaceItem();
     }
 
