@@ -7,6 +7,7 @@ public class PriceScript : MonoBehaviour
     public TMP_Text _priceTag;
     // Start is called before the first frame update
     decimal _price;
+    public bool LastItem { get; set; } = false;
 
     private void Awake()
     {

@@ -43,11 +43,19 @@ public class ItemPlacer : MonoBehaviour
     /// </summary>
     /// <param name="count">num items to add to the queue
     /// </param>
+    bool preLoading = false;
     void loadItems(int count)
     {
+        preLoading = count > 1;
+
         for (int i = 0; i < count; i++)
         {
             PriceScript newItem = Instantiate(_itemPrefab);
+
+            if (preLoading)
+            {
+                newItem.LastItem = i == count - 1;
+            }
             setPosition(newItem);
             newItem.gameObject.SetActive(false);
             _items.Enqueue(newItem);
@@ -69,18 +77,18 @@ public class ItemPlacer : MonoBehaviour
     public void PlaceItem()
     {
         if (_items.Count == 0)
-            loadItems(1);  // 1 at  time until there are enough.
+            return;  
 
         _totalPriceTag.text = $"Level {cLevel.Level}-Item {++ItemCount}";
         if (ItemCount == ITEMSPERLEVEL)
         {
-            _userInputField.gameObject.SetActive(true);
+            
 
             cLevel.LevelUp();
             adjustCurrencyGenerator();
             ItemCount = 0;
         }
-        PriceScript queItem = _items.Dequeue();
+        PriceScript deQueItem = _items.Dequeue();
 
        
         decimal price = 0;
@@ -95,16 +103,18 @@ public class ItemPlacer : MonoBehaviour
         }
         else
             price = _randomCurrencyValueGenerator.Next();
-        queItem.Price = price;
+        deQueItem.Price = price;
         _priceWasZeroLastTime = price == 0;
 
         _totalPrice += price;
 
-        setPosition(queItem);
+        setPosition(deQueItem);
         
-        queItem.gameObject.SetActive(true);
+        deQueItem.gameObject.SetActive(true);
        
     }
+
+    
 
     public void GetUserInput()
     {
