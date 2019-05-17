@@ -146,7 +146,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 1
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
-  m_enableKerning: 1
+  m_enableKerning: 0
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -233,14 +233,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847449906670388750}
-  m_LocalRotation: {x: 0.000071080365, y: -0.0000010275586, z: -0.00002997494, w: 1}
+  m_LocalRotation: {x: 0.000069845555, y: 0.0000000018310354, z: -0.00002621549, w: 1}
   m_LocalPosition: {x: -1.1719899, y: 1.2318993, z: 0}
   m_LocalScale: {x: 0.2286, y: 0.3302, z: 0.0762}
   m_Children:
   - {fileID: 847449906572616785}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.008, y: 0, z: -0.003}
 --- !u!33 &847449906670388738
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -340,4 +340,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792837e7e33dd8244b9c391f71e3cee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.5
+  _speed: 0.7
