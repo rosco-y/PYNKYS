@@ -639,7 +639,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh12550
+  m_Name: pb_Mesh12686
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1428,7 +1428,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: NaN, z: 5.37e-43, w: 1.05e-43}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2373,7 +2373,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 63.604683
+  field of view: 59.261494
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2399,7 +2399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0.18080913, y: 0.0020625005, z: -0.00037942588, w: -0.983516}
-  m_LocalPosition: {x: 0.16237271, y: 2.4608161, z: -2.8083963}
+  m_LocalPosition: {x: 0.1, y: 2.4608161, z: -2.8083963}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2956,7 +2956,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056543917}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.5401163, y: -0.64621115, z: 1.3515577}
+  m_LocalPosition: {x: 5.732, y: -0.64621115, z: 1.3515577}
   m_LocalScale: {x: 0.9375, y: 1, z: 1.3125}
   m_Children: []
   m_Father: {fileID: 889273032}
@@ -2987,7 +2987,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: f51034c56380224488b60873e37ee0da,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.35
+      value: 0.953
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f51034c56380224488b60873e37ee0da,
         type: 3}
