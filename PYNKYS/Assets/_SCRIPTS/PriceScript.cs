@@ -8,6 +8,7 @@ public class PriceScript : MonoBehaviour
     // Start is called before the first frame update
     decimal _price;
     public bool LastItem { get; set; } = false;
+    public int ItemNo { get; set; }
 
     private void Awake()
     {

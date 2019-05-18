@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using PYNKYS.SCRIPTS.PRICES;
+using UnityEngine.EventSystems;
 
 public class ItemPlacer : MonoBehaviour
 {
-    const int ITEMSPERLEVEL = 10;
+    const int NUMITEMSPERTABLETWIDTH = 7;
+    const int ITEMSPERLEVEL = 21;
     public TMP_Text _totalPriceTag;
     public PriceScript _itemPrefab;
     Vector3 _itemPosition;
-    public int ItemCount { get; set; }
     cCurrencyValue _randomCurrencyValueGenerator;
     Queue<PriceScript> _items;
     decimal _totalPrice = 0m;
-
+    bool _playingLevel = true;
     public TMP_InputField _userInputField;
+    string _userAnswerSuccess = "";
+    /// <summary>
+    /// ITEMWIDT, _itemNo; used to space items evenly across the belt.
+    /// </summary>
+    const float ITEMWIDTH = 0.0763F;
+    int _itemNo = 0;
 
 
     /// <summary>
@@ -26,13 +33,20 @@ public class ItemPlacer : MonoBehaviour
 
         _randomCurrencyValueGenerator = new cCurrencyValue();
         _items = new Queue<PriceScript>();
-        _itemPosition = new Vector3(-2.482f, 1.2319f, 0);
-        PlaceItem();
+        
+
+        loadItems(ITEMSPERLEVEL);
+        Reset();
+        
     }
 
     public void Reset()
-    {                     
-        ItemCount = 0;
+    {
+        _itemNo = 0;
+        _totalPrice = 0;
+        adjustCurrencyGenerator();
+        _playingLevel = true;
+        PlaceItem();
     }
 
 
@@ -51,7 +65,7 @@ public class ItemPlacer : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             PriceScript newItem = Instantiate(_itemPrefab);
-
+            newItem.ItemNo = i + 1;
             if (preLoading)
             {
                 newItem.LastItem = i == count - 1;
@@ -63,9 +77,13 @@ public class ItemPlacer : MonoBehaviour
     }
 
 
+    
     void setPosition(PriceScript item)
     {
+        // start placement on far side of belt, and evenly place them across belt.
+        _itemPosition = new Vector3(-2.482f, 1.2319f, 0.266F - (ITEMWIDTH * ((_itemNo++) % NUMITEMSPERTABLETWIDTH)));
         item.transform.position = _itemPosition;
+
         item.transform.rotation = Quaternion.identity;
     }
 
@@ -74,20 +92,14 @@ public class ItemPlacer : MonoBehaviour
     /// Place an Item it's desired location and roation, and then
     /// set it Active, so it can be priced and begin moving.
     /// </summary>
+    
     public void PlaceItem()
     {
-        if (_items.Count == 0)
+        if (!_playingLevel)
             return;  
 
-        _totalPriceTag.text = $"Level {cLevel.Level}-Item {++ItemCount}";
-        if (ItemCount == ITEMSPERLEVEL)
-        {
-            
-
-            cLevel.LevelUp();
-            adjustCurrencyGenerator();
-            ItemCount = 0;
-        }
+        //_totalPriceTag.text = $"Level {cLevel.Level} Item: {_items.Count}";
+        
         PriceScript deQueItem = _items.Dequeue();
 
        
@@ -107,30 +119,62 @@ public class ItemPlacer : MonoBehaviour
         _priceWasZeroLastTime = price == 0;
 
         _totalPrice += price;
+        _totalPriceTag.text = $"{_userAnswerSuccess} Level: {cLevel.Level} Item# {deQueItem.ItemNo} = {_totalPrice:C}";
 
         setPosition(deQueItem);
         
         deQueItem.gameObject.SetActive(true);
-       
-    }
 
-    
-
-    public void GetUserInput()
-    {
-        decimal userInput;
-
-        if (decimal.TryParse(_userInputField.text, out userInput))
+        if (deQueItem.LastItem)
         {
-            if (userInput == _totalPrice)
-                cLevel.LevelUp();
-            else
-                cLevel.LevelDown();
-
-
+            _playingLevel = false;            
         }
-
     }
+
+
+    public void CheckUserInput(string textValue)
+    {
+        decimal userValue;
+        if (decimal.TryParse(_userInputField.text, out userValue))
+
+        {
+            _userInputField.gameObject.SetActive(false);
+            
+            if(userValue == _totalPrice)
+            {
+                cLevel.LevelUp();
+                _userAnswerSuccess = "Success!!";
+            }
+            else
+            {
+                cLevel.LevelDown();
+                _userAnswerSuccess = "Oooops.";
+            }
+
+            _totalPriceTag.text = $"{_userAnswerSuccess} Level: {cLevel.Level} Total Price = {_totalPrice}";
+            Reset();
+        }
+        else
+        {
+            // illegal value, alert user so they can try again.
+        }
+    }
+
+    ///// <summary>
+    ///// GetUserInput
+    ///// </summary>
+    ///// <returns></returns>
+    //public bool GetUserInput()
+    //{
+    //    decimal userInput;
+
+    //    bool success = false;
+    //    if (decimal.TryParse(_userInputField.text, out userInput))
+    //    {
+    //        success = userInput == _totalPrice;
+    //    }
+    //    return success;
+    //}
 
     void adjustCurrencyGenerator()
     {
@@ -146,6 +190,12 @@ public class ItemPlacer : MonoBehaviour
 
     public void EnQueueItem(PriceScript enQueueThisItem)
     {
+        if (enQueueThisItem.LastItem)
+        {
+            _userInputField.text = string.Empty;
+            _userInputField.gameObject.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(_userInputField.gameObject, null);
+        }
         enQueueThisItem.gameObject.SetActive(false);
         setPosition(enQueueThisItem);
         _items.Enqueue(enQueueThisItem);
