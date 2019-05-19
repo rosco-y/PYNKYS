@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class ItemPlacer : MonoBehaviour
 {
-    const int NUMITEMSPERTABLETWIDTH = 7;
+    const int NUMITEMSPERTABLETWIDTH = 8;
     const int ITEMSPERLEVEL = 21;
     public TMP_Text _totalPriceTag;
     public PriceScript _itemPrefab;
