@@ -8,13 +8,14 @@ using UnityEngine.EventSystems;
 public class ItemPlacer : MonoBehaviour
 {
     const int NUMITEMSPERTABLETWIDTH = 8;
-    const int ITEMSPERLEVEL = 21;
-    public TMP_Text _totalPriceTag;
+    public int _ItemsPerLevel = 10;
+    //public TMP_Text _totalPriceTag;
     public PriceScript _itemPrefab;
     Vector3 _itemPosition;
     cCurrencyValue _randomCurrencyValueGenerator;
     Queue<PriceScript> _items;
     decimal _totalPrice = 0m;
+    List<decimal> _prices;
     bool _playingLevel = true;
     public TMP_InputField _userInputField;
     string _userAnswerSuccess = "";
@@ -31,11 +32,12 @@ public class ItemPlacer : MonoBehaviour
     private void OnEnable()
     {
 
+
         _randomCurrencyValueGenerator = new cCurrencyValue();
         _items = new Queue<PriceScript>();
-        
+        _prices = new List<decimal>();
 
-        loadItems(ITEMSPERLEVEL);
+        loadItems(_ItemsPerLevel);
         Reset();
         
     }
@@ -44,6 +46,7 @@ public class ItemPlacer : MonoBehaviour
     {
         _itemNo = 0;
         _totalPrice = 0;
+        _prices.Clear();
         adjustCurrencyGenerator();
         _playingLevel = true;
         PlaceItem();
@@ -119,7 +122,8 @@ public class ItemPlacer : MonoBehaviour
         _priceWasZeroLastTime = price == 0;
 
         _totalPrice += price;
-        _totalPriceTag.text = $"{_userAnswerSuccess} Level: {cLevel.Level} Item# {deQueItem.ItemNo} = {_totalPrice:C}";
+        _prices.Add(price);
+        //_totalPriceTag.text = $"{_userAnswerSuccess} Level: {cLevel.Level} Item# {deQueItem.ItemNo} = {_totalPrice:C}";
 
         setPosition(deQueItem);
         
@@ -143,21 +147,34 @@ public class ItemPlacer : MonoBehaviour
             if(userValue == _totalPrice)
             {
                 cLevel.LevelUp();
-                _userAnswerSuccess = "Success!!";
+                print(SuccessMsg());
             }
             else
             {
                 cLevel.LevelDown();
-                _userAnswerSuccess = "Oooops.";
+                print(FailureMsg(userValue, _totalPrice));
             }
 
-            _totalPriceTag.text = $"{_userAnswerSuccess} Level: {cLevel.Level} Total Price = {_totalPrice}";
+            //_totalPriceTag.text = $"{_userAnswerSuccess}";// Level: {cLevel.Level} Total Price = {_totalPrice}";
             Reset();
         }
         else
         {
             // illegal value, alert user so they can try again.
         }
+    }
+
+    string SuccessMsg()
+    {
+        string msg = "SUCCESS!!";
+        msg += $"\nLevel: {cLevel.Level}";
+        return msg;
+    }
+
+    string FailureMsg(decimal userValue, decimal correctValue)
+    {
+       string msg = $"FAILED\nYou Entered {userValue}, Correct Value was {correctValue}\n Level: {cLevel.Level}";
+       return msg;
     }
 
     ///// <summary>
