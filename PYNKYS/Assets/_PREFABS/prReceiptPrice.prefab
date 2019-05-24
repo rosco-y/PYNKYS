@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1277667330166851644}
   - component: {fileID: 8086862831812809955}
   - component: {fileID: 635239557568164128}
-  - component: {fileID: 2869133796614753029}
+  - component: {fileID: 288851695}
   m_Layer: 5
   m_Name: prReceiptPrice
   m_TagString: Untagged
@@ -158,7 +158,7 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2869133796614753029
+--- !u!114 &288851695
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +167,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2869133796614753028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6121419ecbd7989449c104818dae10d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 392960bfc3286df4aabe93183a81eb45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priceText: {fileID: 635239557568164128}

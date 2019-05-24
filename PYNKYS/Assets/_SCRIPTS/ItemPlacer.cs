@@ -136,33 +136,33 @@ public class ItemPlacer : MonoBehaviour
     }
 
 
-    public void CheckUserInput(string textValue)
-    {
-        decimal userValue;
-        if (decimal.TryParse(_userInputField.text, out userValue))
+    //public void CheckUserInput(string textValue)
+    //{
+    //    decimal userValue;
+    //    if (decimal.TryParse(_userInputField.text, out userValue))
 
-        {
-            _userInputField.gameObject.SetActive(false);
+    //    {
+    //        _userInputField.gameObject.SetActive(false);
             
-            if(userValue == _totalPrice)
-            {
-                cLevel.LevelUp();
-                print(SuccessMsg());
-            }
-            else
-            {
-                cLevel.LevelDown();
-                print(FailureMsg(userValue, _totalPrice));
-            }
+    //        if(userValue == _totalPrice)
+    //        {
+    //            cLevel.LevelUp();
+    //            print(SuccessMsg());
+    //        }
+    //        else
+    //        {
+    //            cLevel.LevelDown();
+    //            print(FailureMsg(userValue, _totalPrice));
+    //        }
 
-            //_totalPriceTag.text = $"{_userAnswerSuccess}";// Level: {cLevel.Level} Total Price = {_totalPrice}";
-            Reset();
-        }
-        else
-        {
-            // illegal value, alert user so they can try again.
-        }
-    }
+    //        //_totalPriceTag.text = $"{_userAnswerSuccess}";// Level: {cLevel.Level} Total Price = {_totalPrice}";
+    //        Reset();
+    //    }
+    //    else
+    //    {
+    //        // illegal value, alert user so they can try again.
+    //    }
+    //}
 
     string SuccessMsg()
     {
@@ -177,21 +177,6 @@ public class ItemPlacer : MonoBehaviour
        return msg;
     }
 
-    ///// <summary>
-    ///// GetUserInput
-    ///// </summary>
-    ///// <returns></returns>
-    //public bool GetUserInput()
-    //{
-    //    decimal userInput;
-
-    //    bool success = false;
-    //    if (decimal.TryParse(_userInputField.text, out userInput))
-    //    {
-    //        success = userInput == _totalPrice;
-    //    }
-    //    return success;
-    //}
 
     void adjustCurrencyGenerator()
     {
@@ -205,16 +190,10 @@ public class ItemPlacer : MonoBehaviour
     }
         
 
-    public void EnQueueItem(PriceScript enQueueThisItem)
+    public void PutItemBackInPool(PriceScript poolItem)
     {
-        if (enQueueThisItem.LastItem)
-        {
-            _userInputField.text = string.Empty;
-            _userInputField.gameObject.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(_userInputField.gameObject, null);
-        }
-        enQueueThisItem.gameObject.SetActive(false);
-        setPosition(enQueueThisItem);
-        _items.Enqueue(enQueueThisItem);
+        poolItem.gameObject.SetActive(false);
+        setPosition(poolItem);
+        _items.Enqueue(poolItem);
     }
 }
