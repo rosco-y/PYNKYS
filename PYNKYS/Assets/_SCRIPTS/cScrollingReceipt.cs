@@ -40,8 +40,9 @@ public class cScrollingReceipt : MonoBehaviour
     void AddLineItem(string item)
     {
         cReceiptPrice lineItem = Instantiate(_pricePrefab);
-        lineItem.LineItem = item;
-        lineItem.transform.parent = _content;
+        TMP_Text tmproText = lineItem.GetComponent<TMP_Text>();
+        tmproText.text = item;
+        tmproText.transform.parent = _content;
         return;
     }
 
@@ -57,7 +58,7 @@ public class cScrollingReceipt : MonoBehaviour
             }
         }
         AddLineItem("=========");
-        AddLineItem($"{totalPrice}");
+        AddLineItem($"{totalPrice:C}");
 
     }
 

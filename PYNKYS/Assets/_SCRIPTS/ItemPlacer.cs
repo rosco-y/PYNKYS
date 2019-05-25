@@ -136,33 +136,33 @@ public class ItemPlacer : MonoBehaviour
     }
 
 
-    //public void CheckUserInput(string textValue)
-    //{
-    //    decimal userValue;
-    //    if (decimal.TryParse(_userInputField.text, out userValue))
+    public void CheckUserInput(string textValue)
+    {
+        decimal userValue;
+        if (decimal.TryParse(_userInputField.text, out userValue))
 
-    //    {
-    //        _userInputField.gameObject.SetActive(false);
-            
-    //        if(userValue == _totalPrice)
-    //        {
-    //            cLevel.LevelUp();
-    //            print(SuccessMsg());
-    //        }
-    //        else
-    //        {
-    //            cLevel.LevelDown();
-    //            print(FailureMsg(userValue, _totalPrice));
-    //        }
+        {
+            _userInputField.gameObject.SetActive(false);
 
-    //        //_totalPriceTag.text = $"{_userAnswerSuccess}";// Level: {cLevel.Level} Total Price = {_totalPrice}";
-    //        Reset();
-    //    }
-    //    else
-    //    {
-    //        // illegal value, alert user so they can try again.
-    //    }
-    //}
+            if (userValue == _totalPrice)
+            {
+                cLevel.LevelUp();
+                print(SuccessMsg());
+            }
+            else
+            {
+                cLevel.LevelDown();
+                print(FailureMsg(userValue, _totalPrice));
+            }
+
+            //_totalPriceTag.text = $"{_userAnswerSuccess}";// Level: {cLevel.Level} Total Price = {_totalPrice}";
+            Reset();
+        }
+        else
+        {
+            // illegal value, alert user so they can try again.
+        }
+    }
 
     string SuccessMsg()
     {

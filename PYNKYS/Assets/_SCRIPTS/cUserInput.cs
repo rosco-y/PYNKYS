@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using PYNKYS.SCRIPTS.PRICES;
+
 public class cUserInput : MonoBehaviour
 {
 
@@ -16,8 +18,14 @@ public class cUserInput : MonoBehaviour
         {
             if (outValue != _totalPrice)
             {
+                cLevel.LevelDown();
                 _scrollingReceipt.SetActive(true);
             }
+        }
+        else
+        {
+            // success
+            cLevel.LevelUp();
         }
     }
 
