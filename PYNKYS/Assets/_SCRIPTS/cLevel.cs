@@ -16,6 +16,7 @@ namespace PYNKYS.SCRIPTS.PRICES
         static float _level = 1f;
         const float INCREMENT = 0.1f;
         static cLevelSettings _settings = new cLevelSettings();
+        static bool _playingLevel = true;
         #endregion
 
 
@@ -35,6 +36,12 @@ namespace PYNKYS.SCRIPTS.PRICES
                 _level = trucateLevel(_level - INCREMENT);
                 _settings.SetLevel(_level); // truncated and agreed upon
             }
+        }
+
+        static public bool PlayingLevel
+        {
+            set { _playingLevel = value; }
+            get { return _playingLevel; }
         }
 
         static public cLevelSettings Settings
@@ -80,6 +87,7 @@ namespace PYNKYS.SCRIPTS.PRICES
             float newLevel = float.Parse(fullNum);
             return newLevel;
         }
+
     }
 
 

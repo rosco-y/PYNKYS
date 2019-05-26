@@ -9,18 +9,14 @@ public class ItemPlacer : MonoBehaviour
 {
     const int NUMITEMSPERTABLETWIDTH = 8;
     public int _ItemsPerLevel = 10;
-    //public TMP_Text _totalPriceTag;
-    public PriceScript _itemPrefab;
-    Vector3 _itemPosition;
     cCurrencyValue _randomCurrencyValueGenerator;
-    Queue<PriceScript> _items;
     decimal _totalPrice = 0m;
     List<decimal> _prices;
-    bool _playingLevel = true;
     public TMP_InputField _userInputField;
     string _userAnswerSuccess = "";
+    Vector3 _itemPosition;
     /// <summary>
-    /// ITEMWIDT, _itemNo; used to space items evenly across the belt.
+    /// ITEMWIDTH, _itemNo; used to space items evenly across the belt.
     /// </summary>
     const float ITEMWIDTH = 0.0763F;
     int _itemNo = 0;
@@ -34,10 +30,10 @@ public class ItemPlacer : MonoBehaviour
 
 
         _randomCurrencyValueGenerator = new cCurrencyValue();
-        _items = new Queue<PriceScript>();
+        //_items = new Queue<PriceScript>();
         _prices = new List<decimal>();
 
-        loadItems(_ItemsPerLevel);
+        //loadItems(_ItemsPerLevel);
         Reset();
         
     }
@@ -48,7 +44,7 @@ public class ItemPlacer : MonoBehaviour
         _totalPrice = 0;
         _prices.Clear();
         adjustCurrencyGenerator();
-        _playingLevel = true;
+        cLevel.PlayingLevel = true;
         PlaceItem();
     }
 
@@ -67,7 +63,7 @@ public class ItemPlacer : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            PriceScript newItem = Instantiate(_itemPrefab);
+            PriceScript newItem = SpawnFromPool();
             newItem.ItemNo = i + 1;
             if (preLoading)
             {
@@ -75,12 +71,16 @@ public class ItemPlacer : MonoBehaviour
             }
             setPosition(newItem);
             newItem.gameObject.SetActive(false);
-            _items.Enqueue(newItem);
+            // _items.Enqueue(newItem);
         }
     }
 
 
-    
+    /// <summary>
+    /// Set item at start of belt, offset by the item's width so they don't 
+    /// collide in the recepticle bin.
+    /// </summary>
+    /// <param name="item"></param>
     void setPosition(PriceScript item)
     {
         // start placement on far side of belt, and evenly place them across belt.
@@ -91,24 +91,35 @@ public class ItemPlacer : MonoBehaviour
     }
 
     bool _priceWasZeroLastTime = false;
+
+
+    PriceScript SpawnFromPool()
+    {
+        GameObject obj = objectPooler.Instance.SpawnFromPool("ITEM");
+        PriceScript priceObj = obj.GetComponent<PriceScript>();
+        //setPosition(priceObj);
+        return priceObj;
+    }
+
+
     /// <summary>
     /// Place an Item it's desired location and roation, and then
-    /// set it Active, so it can be priced and begin moving.
+    /// price it and set it Active so it will begin moving.
     /// </summary>
-    
     public void PlaceItem()
     {
-        if (!_playingLevel)
-            return;  
+        if (!cLevel.PlayingLevel)
+        {
+            return;
+        }
 
-        //_totalPriceTag.text = $"Level {cLevel.Level} Item: {_items.Count}";
-        
-        PriceScript deQueItem = _items.Dequeue();
 
-       
-        decimal price = 0;
+
+        PriceScript deQueItem = SpawnFromPool();
+
         // ensure that zero amounts aren't too common.
         // dont' even allow two of them in a row.
+        decimal price = 0;        
         if (_priceWasZeroLastTime)
         {
             while (price == 0)
@@ -118,12 +129,12 @@ public class ItemPlacer : MonoBehaviour
         }
         else
             price = _randomCurrencyValueGenerator.Next();
+
         deQueItem.Price = price;
         _priceWasZeroLastTime = price == 0;
 
         _totalPrice += price;
         _prices.Add(price);
-        //_totalPriceTag.text = $"{_userAnswerSuccess} Level: {cLevel.Level} Item# {deQueItem.ItemNo} = {_totalPrice:C}";
 
         setPosition(deQueItem);
         
@@ -131,50 +142,8 @@ public class ItemPlacer : MonoBehaviour
 
         if (deQueItem.LastItem)
         {
-            _playingLevel = false;            
+            cLevel.PlayingLevel = false;            
         }
-    }
-
-
-    public void CheckUserInput(string textValue)
-    {
-        decimal userValue;
-        if (decimal.TryParse(_userInputField.text, out userValue))
-
-        {
-            _userInputField.gameObject.SetActive(false);
-
-            if (userValue == _totalPrice)
-            {
-                cLevel.LevelUp();
-                print(SuccessMsg());
-            }
-            else
-            {
-                cLevel.LevelDown();
-                print(FailureMsg(userValue, _totalPrice));
-            }
-
-            //_totalPriceTag.text = $"{_userAnswerSuccess}";// Level: {cLevel.Level} Total Price = {_totalPrice}";
-            Reset();
-        }
-        else
-        {
-            // illegal value, alert user so they can try again.
-        }
-    }
-
-    string SuccessMsg()
-    {
-        string msg = "SUCCESS!!";
-        msg += $"\nLevel: {cLevel.Level}";
-        return msg;
-    }
-
-    string FailureMsg(decimal userValue, decimal correctValue)
-    {
-       string msg = $"FAILED\nYou Entered {userValue}, Correct Value was {correctValue}\n Level: {cLevel.Level}";
-       return msg;
     }
 
 
@@ -190,10 +159,10 @@ public class ItemPlacer : MonoBehaviour
     }
         
 
-    public void PutItemBackInPool(PriceScript poolItem)
-    {
-        poolItem.gameObject.SetActive(false);
-        setPosition(poolItem);
-        _items.Enqueue(poolItem);
-    }
+    //public void PutItemBackInPool(PriceScript poolItem)
+    //{
+    //    poolItem.gameObject.SetActive(false);
+    //    setPosition(poolItem);
+    //    //_items.Enqueue(poolItem);
+    //}
 }
