@@ -23,6 +23,11 @@ public class RemoveItemTrigger : MonoBehaviour
         _totalPrice = 0;
     }
 
+    /// <summary>
+    /// Remove object from game play, put back in pool.
+    /// Display user prompt (ask for total) if it is the last item of the level.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         PriceScript retireItem = other.GetComponent<PriceScript>();
@@ -32,9 +37,8 @@ public class RemoveItemTrigger : MonoBehaviour
         {
             _userInput.gameObject.SetActive(true);
         }
-        //_itemPlacer.PutItemBackInPool(retireItem);
-        //_itemPlacer.PlaceItem();
-        objectPooler.Instance.SpawnFromPool("ITEM");
+
+        objectPooler.Instance.ReturnToPool("ITEM", retireItem.gameObject);
     }
 
     
@@ -60,8 +64,6 @@ public class RemoveItemTrigger : MonoBehaviour
         {
             if (outValue != Total)
             {
-                
-
                 cLevel.PlayingLevel = false;
                 cScrollingReceipt receipt = _scrollingReceipt.GetComponent<cScrollingReceipt>();
                 receipt.PriceList = _priceList; // pass this around as it will be needed!
@@ -69,7 +71,8 @@ public class RemoveItemTrigger : MonoBehaviour
                 SetColor(Color.red);
                 _cmdContinueButton.GetComponent<cCmdContinue>().SetItemPlacer(_itemPlacer);
                 _cmdContinueButton.SetActive(true);
-
+                GUI.SetNextControlName("cmdContinue");
+                GUI.FocusControl("cmdContinue");
             }
             else
             {

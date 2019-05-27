@@ -27,15 +27,9 @@ public class ItemPlacer : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
-
-
         _randomCurrencyValueGenerator = new cCurrencyValue();
-        //_items = new Queue<PriceScript>();
         _prices = new List<decimal>();
-
-        //loadItems(_ItemsPerLevel);
         Reset();
-        
     }
 
     public void Reset()
@@ -97,7 +91,6 @@ public class ItemPlacer : MonoBehaviour
     {
         GameObject obj = objectPooler.Instance.SpawnFromPool("ITEM");
         PriceScript priceObj = obj.GetComponent<PriceScript>();
-        //setPosition(priceObj);
         return priceObj;
     }
 
